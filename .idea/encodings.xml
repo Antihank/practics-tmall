@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/tmall-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tmall-manage" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tmall-manage-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tmall-manage/tmall-manage-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tmall-manage/tmall-manage-mapper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tmall-manage/tmall-manage-pojo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tmall-manage/tmall-manage-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tmall-parent" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

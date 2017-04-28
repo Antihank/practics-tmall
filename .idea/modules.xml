@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/tmall-common/tmall-common.iml" filepath="$PROJECT_DIR$/tmall-common/tmall-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tmall-manage/tmall-manage.iml" filepath="$PROJECT_DIR$/tmall-manage/tmall-manage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tmall-manage/tmall-manage-interface/tmall-manage-interface.iml" filepath="$PROJECT_DIR$/tmall-manage/tmall-manage-interface/tmall-manage-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tmall-manage/tmall-manage-mapper/tmall-manage-mapper.iml" filepath="$PROJECT_DIR$/tmall-manage/tmall-manage-mapper/tmall-manage-mapper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tmall-manage/tmall-manage-service/tmall-manage-service.iml" filepath="$PROJECT_DIR$/tmall-manage/tmall-manage-service/tmall-manage-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tmall-manage-web/tmall-manage-web.iml" filepath="$PROJECT_DIR$/tmall-manage-web/tmall-manage-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tmall-parent/tmall-parent.iml" filepath="$PROJECT_DIR$/tmall-parent/tmall-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tmall-manage/tmall-manage-pojo/tmall-pojo.iml" filepath="$PROJECT_DIR$/tmall-manage/tmall-manage-pojo/tmall-pojo.iml" />
+    </modules>
+  </component>
+</project>

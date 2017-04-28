@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - tmall@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="tmall">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="bos19"/>
+    <schema id="3" name="erp"/>
+    <schema id="4" name="gjp"/>
+    <schema id="5" name="hibernate"/>
+    <schema id="6" name="information_schema"/>
+    <schema id="7" name="itcastcrm"/>
+    <schema id="8" name="itheima"/>
+    <schema id="9" name="littlebbs"/>
+    <schema id="10" name="mybase"/>
+    <schema id="11" name="mysql"/>
+    <schema id="12" name="performance_schema"/>
+    <schema id="13" name="students_manage_system"/>
+    <schema id="14" name="test"/>
+    <schema id="15" name="tims"/>
+    <schema id="16" name="user"/>
+  </database-model>
+</dataSource>
