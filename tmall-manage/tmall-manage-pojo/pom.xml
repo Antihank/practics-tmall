@@ -12,6 +12,11 @@
     <packaging>jar</packaging>
     <name>天猫商城-后台实体</name>
     <description>后台管理子系统实体模型模块</description>
-
-
+    <dependencies>
+        <!--通用mapper-->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+        </dependency>
+    </dependencies>
 </project>

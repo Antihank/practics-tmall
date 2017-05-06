@@ -55,9 +55,12 @@
     </bean>
 
     <!-- 配置Mapper扫描 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <!-- Mapper扫描包 -->
+    <bean id="scannerConfigurer" class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.antihank.tmall.manage.mapper"/>
+        <property name="properties">
+            <map>
+                <entry key="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            </map>
+        </property>
     </bean>
-
 </beans>

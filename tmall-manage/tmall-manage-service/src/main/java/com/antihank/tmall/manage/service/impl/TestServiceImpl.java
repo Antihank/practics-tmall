@@ -2,9 +2,8 @@ package com.antihank.tmall.manage.service.impl;
 
 import com.antihank.tmall.manage.mapper.TestMapper;
 import com.antihank.tmall.manage.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * Created by Antihank on 2017/4/27.
@@ -12,7 +11,7 @@ import javax.annotation.Resource;
 @Service
 public class TestServiceImpl implements TestService {
 
-    @Resource
+    @Autowired
     private TestMapper mapper;
 
     @Override

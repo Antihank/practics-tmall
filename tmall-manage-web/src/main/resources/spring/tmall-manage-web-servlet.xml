@@ -10,6 +10,7 @@
 
     <!-- 配置controller扫描 -->
     <context:component-scan base-package="com.antihank.tmall.manage.controller"/>
+    <context:property-placeholder location="classpath:upload.properties"/>
 
     <!-- 配置注解驱动 -->
     <mvc:annotation-driven/>
@@ -23,12 +24,36 @@
     <!-- 配置dubbo服务 -->
     <dubbo:application name="tmall-manage-web"/>
 
-    <!-- 使用广播； -->
+    <!-- (注册方式一)使用multicast广播注册中心 -->
+    <!--
     <dubbo:registry address="multicast://224.5.6.7:1234"/>
-
-    <!-- 声明要调用的服务，timeout是设置连接超时最长时间,如果不设置，超时时间默认是3秒 -->
     <dubbo:reference interface="com.antihank.tmall.manage.service.TestService"
                      id="testService" timeout="1000000"/>
+-->
 
+    <!--（注册方式二)IP直连-->
+    <!--
+    <dubbo:reference interface="com.antihank.tmall.manage.service.TestService"
+                     id="teseService" timeout="1000000" url="dubbo://127.0.0.1:20880"/>
+    -->
+
+    <!--（注册方式三)zookeeper注册中心-->
+    <!--注册机制为zookeeper，地址为xxx-->
+    <dubbo:registry protocol="zookeeper" address="192.168.12.168:2181"/>
+    <!--声明要调用的服务-->
+    <dubbo:reference interface="com.antihank.tmall.manage.service.TestService"
+                     id="testService" timeout="1000000"/>
+    <dubbo:reference interface="com.antihank.tmall.manage.service.ItemCatService"
+                     id="itemCatService" timeout="1000000"/>
+    <dubbo:reference interface="com.antihank.tmall.manage.service.ItemService"
+                     id="itemService" timeout="1000000"/>
+    <dubbo:reference interface="com.antihank.tmall.manage.service.ItemDescService"
+                     id="itemDescService" timeout="1000000"/>
+
+    <!--配置上传解释器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSize" value="5000000"/>
+    </bean>
 </beans>
 

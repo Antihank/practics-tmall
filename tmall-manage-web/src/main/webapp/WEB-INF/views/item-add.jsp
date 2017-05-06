@@ -1,7 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<link href="/js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<c:set value="${pageContext.request.contextPath}" var="ctx"/>
+<link href="${ctx}/js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="${ctx}/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${ctx}/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <div style="padding:10px 10px 10px 10px">
     <form id="itemAddForm" class="itemForm" method="post">
         <table cellpadding="5">
@@ -76,7 +78,7 @@
     //编辑器参数
     kingEditorParams = {
         filePostName: "uploadFile",
-        uploadJson: '/rest/pic/upload',
+        uploadJson: '/rest/pic/upload;jsessionid=${pageContext.session.id}',
         dir: "image"
     };
 

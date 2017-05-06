@@ -9,18 +9,34 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 配置service扫描 -->
-    <context:component-scan base-package="com.antihank.tmall"/>
+    <context:component-scan base-package="com.antihank.tmall.manage.service"/>
     <!-- 配置dubbo -->
     <!-- 提供方应用信息，用于计算依赖关系 -->
     <dubbo:application name="tmall-manage-service"/>
 
-    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <!-- (注册方式一)使用multicast广播注册中心暴露服务地址 -->
+    <!--
     <dubbo:registry address="multicast://224.5.6.7:1234"/>
-
-    <!-- 用dubbo协议在20880端口暴露服务；端口号唯一即可 -->
     <dubbo:protocol name="dubbo" port="20880"/>
-
-    <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="com.antihank.tmall.manage.service.TestService" ref="testServiceImpl"/>
+    -->
+
+    <!--（注册方式二)IP直连-->
+    <!--
+    <dubbo:registry address="N/A"/>
+    <dubbo:protocol name="dubbo" port="20880"/>
+    <dubbo:service interface="com.antihank.tmall.manage.service.TestService" ref="testServiceImpl"/>
+    -->
+
+    <!--(注册方式三)zookeeper注册中心-->
+
+    <dubbo:registry protocol="zookeeper" address="192.168.12.168:2181"/>
+    <!--使用dubbo协议在20880端口暴漏服务-->
+    <dubbo:protocol name="dubbo" port="20880"/>
+    <!--声明需要暴漏的服务接口-->
+    <dubbo:service interface="com.antihank.tmall.manage.service.TestService" ref="testServiceImpl"/>
+    <dubbo:service interface="com.antihank.tmall.manage.service.ItemCatService" ref="itemCatServiceImpl"/>
+    <dubbo:service interface="com.antihank.tmall.manage.service.ItemDescService" ref="itemDescServiceImpl"/>
+    <dubbo:service interface="com.antihank.tmall.manage.service.ItemService" ref="itemServiceImpl"/>
 
 </beans>
