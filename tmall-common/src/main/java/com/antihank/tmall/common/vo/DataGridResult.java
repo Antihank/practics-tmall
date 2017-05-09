@@ -9,6 +9,9 @@ public class DataGridResult<T> {
     private Long total;
     private List<T> rows;
 
+    public DataGridResult() {
+    }
+
     public DataGridResult(Long total, List<T> rows) {
         this.total = total;
         this.rows = rows;
