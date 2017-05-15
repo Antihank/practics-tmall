@@ -10,6 +10,19 @@
 
     <!-- 配置controller扫描 -->
     <context:component-scan base-package="com.antihank.tmall.portal"/>
+    <bean id="placeholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <!-- 允许JVM参数覆盖 -->
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+        <!-- 忽略没有找到的资源文件 -->
+        <property name="ignoreResourceNotFound" value="true"/>
+        <!-- 配置资源文件 -->
+        <property name="locations">
+            <list>
+                <value>classpath:env.properties</value>
+            </list>
+        </property>
+    </bean>
+
 
     <!-- 配置注解驱动 -->
     <mvc:annotation-driven/>
@@ -29,4 +42,6 @@
     <!-- 声明要调用的服务，timeout是设置连接超时最长时间,如果不设置，超时时间默认是3秒 -->
     <dubbo:reference interface="com.antihank.tmall.manage.service.ContentService"
                      id="contentService" timeout="1000000"/>
+    <dubbo:reference interface="com.antihank.tmall.sso.service.UserService"
+                     id="userService" timeout="1000000"/>
 </beans>

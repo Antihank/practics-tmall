@@ -33,6 +33,14 @@
         <module name="tmall-manage-web" />
         <module name="tmall-pojo" />
         <module name="tmall-portal" />
+        <module name="tmall-search-interface" />
+        <module name="tmall-search-service" />
+        <module name="tmall-search-web" />
+        <module name="tmall-sso-interface" />
+        <module name="tmall-sso-mapper" />
+        <module name="tmall-sso-pojo" />
+        <module name="tmall-sso-service" />
+        <module name="tmall-sso-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -46,6 +54,16 @@
       <module name="tmall-parent" target="1.7" />
       <module name="tmall-pojo" target="1.7" />
       <module name="tmall-portal" target="1.7" />
+      <module name="tmall-search" target="1.7" />
+      <module name="tmall-search-interface" target="1.7" />
+      <module name="tmall-search-service" target="1.7" />
+      <module name="tmall-search-web" target="1.7" />
+      <module name="tmall-sso" target="1.7" />
+      <module name="tmall-sso-interface" target="1.7" />
+      <module name="tmall-sso-mapper" target="1.7" />
+      <module name="tmall-sso-pojo" target="1.7" />
+      <module name="tmall-sso-service" target="1.7" />
+      <module name="tmall-sso-web" target="1.7" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

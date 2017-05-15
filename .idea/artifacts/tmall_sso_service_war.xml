@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="tmall-sso-service:war">
+    <output-path>$PROJECT_DIR$/tmall-sso/tmall-sso-service/target</output-path>
+    <root id="archive" name="tmall-sso-service.war">
+      <element id="artifact" artifact-name="tmall-sso-service:war exploded" />
+    </root>
+  </artifact>
+</component>

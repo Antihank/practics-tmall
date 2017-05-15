@@ -4,15 +4,23 @@ import com.antihank.tmall.common.vo.DataGridResult;
 import com.antihank.tmall.manage.pojo.Item;
 import com.antihank.tmall.manage.service.ItemService;
 import com.github.pagehelper.PageInfo;
+import org.apache.activemq.command.ActiveMQMapMessage;
+import org.apache.activemq.command.ActiveMQMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
+import javax.jms.Topic;
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,12 +34,23 @@ public class ItemController implements Serializable {
     private static final long serialVersionUID = 5350306013423840417L;
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private JmsTemplate jmsTemplate;
+    @Autowired
+    private Topic itemTopicDestination;
 
+    /**
+     * 新增商品
+     *
+     * @param item 商品对象
+     * @param desc 商品描述
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity add(Item item, @RequestParam(value = "desc", required = false) String desc) {
         try {
             Long id = itemService.save(item, desc);
-
+            sendMQMessage("update",id);
             return ResponseEntity.status(HttpStatus.OK).build();
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,6 +89,7 @@ public class ItemController implements Serializable {
 
         try {
             itemService.updateItem(item, desc);
+            sendMQMessage("update", item.getId());
             return ResponseEntity.ok(null);
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,7 +106,11 @@ public class ItemController implements Serializable {
     @RequestMapping("delete")
     public ResponseEntity delete(@RequestParam("ids") String ids) {
         try {
-            itemService.fakeDelete(ids.split(","));
+            String[] arr = ids.split(",");
+            itemService.fakeDelete(arr);
+            for (String s : arr) {
+                sendMQMessage("delete", Long.parseLong(s));
+            }
             return ResponseEntity.ok(null);
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,7 +127,11 @@ public class ItemController implements Serializable {
     @RequestMapping("instock")
     public ResponseEntity instock(@RequestParam("ids") String ids) {
         try {
-            itemService.instock(ids.split(","));
+            String[] arr = ids.split(",");
+            itemService.instock(arr);
+            for (String s : arr) {
+                sendMQMessage("delete", Long.parseLong(s));
+            }
             return ResponseEntity.ok(null);
         } catch (Exception e) {
             e.printStackTrace();
@@ -120,11 +148,33 @@ public class ItemController implements Serializable {
     @RequestMapping("reshelf")
     public ResponseEntity reshelf(@RequestParam("ids") String ids) {
         try {
+            String[] arr = ids.split(",");
             itemService.reshelf(ids.split(","));
+            for (String s : arr) {
+                sendMQMessage("delete", Long.parseLong(s));
+            }
             return ResponseEntity.ok(null);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    /**
+     * 通用发送mq消息 --发送更新索引消息
+     *
+     * @param type   更新类型——delete:删除；update；更新或者新增
+     * @param itemId 数据库记录id
+     */
+    private void sendMQMessage(final String type, final Long itemId) {
+        jmsTemplate.send(itemTopicDestination, new MessageCreator() {
+            @Override
+            public Message createMessage(Session session) throws JMSException {
+                ActiveMQMapMessage map = new ActiveMQMapMessage();
+                map.setString("type", type);
+                map.setLong("itemId", itemId);
+                return map;
+            }
+        });
     }
 }

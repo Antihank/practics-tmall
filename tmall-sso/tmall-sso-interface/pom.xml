@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>tmall-sso</artifactId>
+        <groupId>com.antihank</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>tmall-sso-interface</artifactId>
+    <packaging>jar</packaging>
+    <name>天猫商城-登录接口</name>
+    <description>单点登录接口模块</description>
+    <dependencies>
+        <!-- tmall-sso-pojo依赖 -->
+        <dependency>
+            <groupId>com.antihank</groupId>
+            <artifactId>tmall-sso-pojo</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+</project>

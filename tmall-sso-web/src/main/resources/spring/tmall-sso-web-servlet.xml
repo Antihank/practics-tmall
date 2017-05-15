@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 配置controller扫描 -->
+    <context:component-scan base-package="com.antihank.tmall.sso.controller"/>
+    <context:property-placeholder location="classpath:env.properties"/>
+
+    <!-- 配置注解驱动 -->
+    <mvc:annotation-driven/>
+
+    <!-- 配置dubbo服务 -->
+    <dubbo:application name="tmall-sso-web"/>
+
+    <!-- (注册方式一)使用multicast广播注册中心 -->
+    <!--
+    <dubbo:registry address="multicast://224.5.6.7:1234"/>
+    <dubbo:reference interface="com.antihank.tmall.sso.service.TestService"
+                     id="testService" timeout="1000000"/>
+-->
+
+    <!--（注册方式二)IP直连-->
+    <!--
+    <dubbo:reference interface="com.antihank.tmall.sso.service.TestService"
+                     id="teseService" timeout="1000000" url="dubbo://127.0.0.1:20880"/>
+    -->
+
+    <!--（注册方式三)zookeeper注册中心-->
+    <!--注册机制为zookeeper，地址为xxx-->
+    <dubbo:registry protocol="zookeeper" address="192.168.12.168:2181"/>
+    <!--声明要调用的服务-->
+    <dubbo:reference interface="com.antihank.tmall.sso.service.UserService"
+                     id="userService" timeout="1000000"/>
+</beans>
+

@@ -2,7 +2,7 @@ package com.antihank.tmall.manage.service.impl;
 
 import com.antihank.tmall.manage.pojo.Content;
 import com.antihank.tmall.manage.service.ContentService;
-import com.antihank.tmall.manage.service.redis.RedisService;
+import com.antihank.tmall.common.service.redis.RedisService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;

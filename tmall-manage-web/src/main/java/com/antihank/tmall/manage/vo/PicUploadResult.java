@@ -1,9 +1,11 @@
 package com.antihank.tmall.manage.vo;
 
+import java.io.Serializable;
+
 /**
  * Created by Antihank on 2017/5/5.
  */
-public class PicUploadResult {
+public class PicUploadResult implements Serializable {
 
     private Integer error;
     private String url;
